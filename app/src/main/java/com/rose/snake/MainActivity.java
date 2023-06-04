@@ -2,6 +2,7 @@ package com.rose.snake;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private final AtomicInteger mGameStatus = new AtomicInteger(STATUS_START);
 
     private final Handler mHandler = new Handler();
+
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        getIntentedDate();
+
         mGameBtn.setOnClickListener(v -> {
             if (mGameStatus.get() == STATUS_PLAYING) {
                 setGameStatus(STATUS_PAUSED);
@@ -83,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void getIntentedDate(){
+        Intent intent = getIntent();
+        String userID = intent.getStringExtra("userID");
+    }
     private void setGameStatus(int gameStatus) {
         int prevStatus = mGameStatus.get();
         mGameStatusText.setVisibility(View.VISIBLE);
