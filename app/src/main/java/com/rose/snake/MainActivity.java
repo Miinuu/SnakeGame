@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MainActivity extends AppCompatActivity {
 
     private static final int FPS = 60;
-    private static final int SPEED = 25;
+    private static final int SPEED = 15;
 
     private static final int STATUS_PAUSED = 1;
     private static final int STATUS_START = 2;
