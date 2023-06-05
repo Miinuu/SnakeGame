@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                             new Handler().postDelayed(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                                    Intent intent = new Intent(LoginActivity.this, GameStartActivity.class);
                                                     intent.putExtra("userID", strEmail);
 
                                                     startActivity(intent);

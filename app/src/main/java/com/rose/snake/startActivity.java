@@ -45,6 +45,8 @@ public class startActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
     private long backKeyPressedTime = 0;
