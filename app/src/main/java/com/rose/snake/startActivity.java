@@ -34,7 +34,7 @@ public class startActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /** 계정 찾기 기능.. .
+
         btnFindAccount = findViewById(R.id.btnFindAccount);
 
         btnFindAccount.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +44,7 @@ public class startActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }); */
+        });
     }
 
     private long backKeyPressedTime = 0;
