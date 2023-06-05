@@ -7,18 +7,18 @@ public class UserScore
 {
     private String idToken; // Firebase Uid (고유id 토큰)
     private String emailId;
-    private String score;
+    private int score;
     private String userDate;
 
 
     public UserScore() { }
     // Firebase에서 Realtime DB 에서 모델 클래스로 가져올 때 빈 생성자 필요
 
-    public String getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

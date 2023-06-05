@@ -82,7 +82,7 @@ public class FindIdActivity extends AppCompatActivity {
                             String fullText = "사용자의 ID는\n" + targetText + "\n입니다";
 
                             SpannableString spannableString = new SpannableString(fullText);
-                            int colorBlue = Color.rgb(108,145,250);
+                            int colorBlue = getResources().getColor(R.color.bright_green);
                             ForegroundColorSpan colorSpan = new ForegroundColorSpan(colorBlue);
                             spannableString.setSpan(colorSpan,9,9+targetText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                             StyleSpan styleSpan = new StyleSpan(Typeface.BOLD);

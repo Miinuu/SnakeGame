@@ -46,49 +46,14 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="70dp"
-        android:background="@drawable/round_white_button"
+        android:background="@drawable/round_green_button"
         android:fontFamily="@font/jamsil_regular"
         android:text="로그인"
-        android:textColor="@drawable/blue_to_white_button_text"
+        android:textSize="17sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPasswd" />
-
-    <TextView
-        android:id="@+id/txtOr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/jamsil_regular"
-        android:text="OR"
-        android:textColor="@color/grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
-
-    <View
-        android:id="@+id/txtOrLine1"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="7dp"
-        android:background="@color/grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtOr"
-        app:layout_constraintTop_toTopOf="@+id/txtOr" />
-
-    <View
-        android:id="@+id/txtOrLine2"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/grey"
-        app:layout_constraintEnd_toStartOf="@+id/txtOr"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtOr" />
 
     <ImageButton
         android:id="@+id/btnCancle"
@@ -97,7 +62,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:background="@android:color/transparent"
-        android:backgroundTint="@color/grey"
+        android:backgroundTint="@color/white"
         android:contentDescription="취소버튼"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -112,7 +77,7 @@
         android:layout_marginTop="200dp"
         android:fontFamily="@font/jamsil_regular"
         android:text="아이디"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/txtEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -125,7 +90,7 @@
         android:layout_marginBottom="10dp"
         android:text="비밀번호"
         android:fontFamily="@font/jamsil_regular"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/txtPasswd"
         app:layout_constraintStart_toStartOf="parent" />
 

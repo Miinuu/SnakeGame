@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     EditText txtID,txtPW;
     Button btnLogin;
+    ImageButton btnCancle;
 
     private SignInButton btn_google;
     private GoogleApiClient googleApiClient;
@@ -54,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         txtID = findViewById(R.id.txtEmail);
         txtPW = findViewById(R.id.txtPasswd);
         btnLogin = findViewById(R.id.btnLogin);
+        btnCancle = findViewById(R.id.btnCancle);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("snakeGame").child("UserAccount");
@@ -61,6 +64,14 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(loginEvent);
     }
 
+    View.OnClickListener cancleEvent = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(LoginActivity.this,startActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    };
 
     /** 회원가입 이벤트 리스너 */
     View.OnClickListener loginEvent = new View.OnClickListener() {

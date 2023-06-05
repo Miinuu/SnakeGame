@@ -4,7 +4,7 @@
     <item android:state_enabled="true" android:state_pressed="false">
         <shape>
             <!--배경-->
-            <solid android:color="@color/blue"></solid>
+            <solid android:color="@color/bright_green"></solid>
             <!--테두리-->
             <stroke
                 android:width="0dp"
@@ -20,7 +20,7 @@
     <!--클릭했을때-->
     <item android:state_enabled="true" android:state_pressed="true">
         <shape>
-            <solid android:color="@color/bright_grey"></solid>
+            <solid android:color="@color/dark_green"></solid>
             <stroke
                 android:width="0dp"
                 android:color="@color/white"></stroke>

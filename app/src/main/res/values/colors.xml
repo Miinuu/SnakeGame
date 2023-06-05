@@ -19,4 +19,6 @@
     <color name="red">#EB3232</color>
     <color name="green">#008000</color>
     <color name="purple">#9C27B0</color>
+    <color name="bright_green">#66FF99</color>
+    <color name="dark_green">#00CC66</color>
 </resources>

@@ -44,6 +44,7 @@ public class GameStartActivity extends AppCompatActivity {
 
         btnStartGame.setOnClickListener(startGameEvent);
         btnLogout.setOnClickListener(logoutEvent);
+        btnRanking.setOnClickListener(rankingEvent);
     }
 
     private void getIntentedData(){
@@ -65,6 +66,14 @@ public class GameStartActivity extends AppCompatActivity {
             Intent intent = new Intent(GameStartActivity.this,startActivity.class);
             startActivity(intent);
             finish();
+        }
+    };
+
+    View.OnClickListener rankingEvent = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(GameStartActivity.this,RankingActivity.class);
+            startActivity(intent);
         }
     };
 

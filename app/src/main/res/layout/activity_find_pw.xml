@@ -29,8 +29,8 @@
         android:layout_marginTop="100dp"
         android:fontFamily="@font/jamsil_regular"
         android:text="전화번호"
-        android:textColor="@color/black"
-        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -42,8 +42,8 @@
         android:layout_marginTop="150dp"
         android:fontFamily="@font/jamsil_regular"
         android:text="이름"
-        android:textColor="@color/black"
-        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -68,10 +68,10 @@
         android:layout_height="48dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="30dp"
-        android:background="@drawable/bluerounded_white_button"
+        android:background="@drawable/green_shaped_button"
         android:fontFamily="@font/jamsil_regular"
         android:text="비밀번호 변경"
-        android:textColor="@drawable/blue_to_white_button_text"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtId" />
 
@@ -82,7 +82,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/jamsil_bold"
         android:text="비밀번호 찾기"
-        android:textColor="@color/blue"
+        android:textColor="@color/bright_green"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,8 +96,8 @@
         android:layout_marginTop="100dp"
         android:fontFamily="@font/jamsil_regular"
         android:text="이메일"
-        android:textColor="@color/black"
-        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 

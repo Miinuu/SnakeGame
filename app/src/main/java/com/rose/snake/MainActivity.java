@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         UserScore userScore = new UserScore();
         userScore.setIdToken(firebaseUser.getUid());
         userScore.setEmailId(firebaseUser.getEmail());
-        userScore.setScore(String.valueOf(userScoreData));
+        userScore.setScore(Integer.parseInt(String.valueOf(userScoreData)));
 
         LocalDate today = LocalDate.now();
         userScore.setUserDate(String.valueOf(today));

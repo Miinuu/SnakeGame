@@ -5,7 +5,7 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradation_list"
+    android:background="@drawable/main_gradation_color"
     tools:context=".startActivity">
 
     <Button
@@ -17,6 +17,7 @@
         android:background="@drawable/whiterounded_black_button"
         android:fontFamily="@font/jamsil_regular"
         android:text="회원가입"
+        android:textSize="16sp"
         android:textColor="@drawable/white_to_black_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +32,7 @@
         android:fontFamily="@font/jamsil_bold"
         android:gravity="center"
         android:text="SNAKE GAME "
-        android:textColor="@color/black"
+        android:textColor="@color/bright_green"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +74,7 @@
         android:height="48dp"
         android:background="@drawable/blackrounded_white_button"
         android:fontFamily="@font/jamsil_regular"
+        android:textSize="16sp"
         android:text="로그인"
         android:textColor="@drawable/black_to_white_button_text"
         app:layout_constraintBottom_toBottomOf="parent"

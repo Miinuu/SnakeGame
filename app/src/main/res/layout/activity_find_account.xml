@@ -16,7 +16,7 @@
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/jamsil_bold"
         android:text="계정찾기"
-        android:textColor="@color/blue"
+        android:textColor="@color/bright_green"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +28,10 @@
         android:layout_height="48dp"
         android:layout_marginTop="-15dp"
         android:layout_marginEnd="25dp"
-        android:background="@drawable/round_white_button"
+        android:background="@drawable/round_green_button"
         android:fontFamily="@font/jamsil_regular"
         android:text="아이디 찾기"
-        android:textColor="@drawable/blue_to_white_button_text"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView10" />
 
@@ -43,7 +43,7 @@
         android:layout_marginTop="300dp"
         android:fontFamily="@font/jamsil_regular"
         android:text="아이디를 잊어버리셨나요?"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +55,7 @@
         android:layout_marginTop="130dp"
         android:fontFamily="@font/jamsil_regular"
         android:text="비밀번호를 잊어버리셨나요?"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -65,10 +65,10 @@
         android:layout_height="48dp"
         android:layout_marginTop="-15dp"
         android:layout_marginEnd="25dp"
-        android:background="@drawable/round_white_button"
+        android:background="@drawable/round_green_button"
         android:fontFamily="@font/jamsil_regular"
         android:text="비밀번호 찾기"
-        android:textColor="@drawable/blue_to_white_button_text"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView11" />
 
