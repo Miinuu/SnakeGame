@@ -15,10 +15,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String userID;
 
+
+    private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDatabaseRef;
+    private int userScoreData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mGameScoreText = findViewById(R.id.game_score);
         mGameView.init();
         mGameView.setGameScoreUpdatedListener(score -> {
+            userScoreData = score;
            mHandler.post(() -> mGameScoreText.setText("Score: " + score));
         });
 
@@ -93,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setGameStatus(STATUS_START);
+
+
+
     }
 
     @Override
@@ -101,6 +115,25 @@ public class MainActivity extends AppCompatActivity {
         if (mGameStatus.get() == STATUS_PLAYING) {
             setGameStatus(STATUS_PAUSED);
         }
+    }
+
+    private void saveScoreData(){
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("snakeGame");
+
+        UserScore userScore = new UserScore();
+        userScore.setIdToken(firebaseUser.getUid());
+        userScore.setEmailId(firebaseUser.getEmail());
+        userScore.setScore(String.valueOf(userScoreData));
+
+        LocalDate today = LocalDate.now();
+        userScore.setUserDate(String.valueOf(today));
+
+        String tableKey = mDatabaseRef.child("UserScore").push().getKey();
+        mDatabaseRef.child("UserScore").child(tableKey).setValue(userScore);
     }
 
 
@@ -147,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if (mGameView.isGameOver()) {
+                saveScoreData();
                 mHandler.post(() -> setGameStatus(STATUS_OVER));
             }
         }).start();
