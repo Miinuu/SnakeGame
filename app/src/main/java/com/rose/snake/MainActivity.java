@@ -5,10 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,10 +47,20 @@ public class MainActivity extends AppCompatActivity {
 
     private String userID;
 
+
+    private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDatabaseRef;
+    private int userScoreData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Intent intent = getIntent();
+        String userID = intent.getStringExtra("userID");
+
 
         mGameView = findViewById(R.id.game_view);
         mGameStatusText = findViewById(R.id.game_status);
@@ -43,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mGameScoreText = findViewById(R.id.game_score);
         mGameView.init();
         mGameView.setGameScoreUpdatedListener(score -> {
+            userScoreData = score;
            mHandler.post(() -> mGameScoreText.setText("Score: " + score));
         });
 
@@ -67,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getIntentedDate();
+
 
         mGameBtn.setOnClickListener(v -> {
             if (mGameStatus.get() == STATUS_PLAYING) {
@@ -78,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setGameStatus(STATUS_START);
+
+
+
     }
 
     @Override
@@ -88,10 +117,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void getIntentedDate(){
-        Intent intent = getIntent();
-        String userID = intent.getStringExtra("userID");
+    private void saveScoreData(){
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("snakeGame");
+
+        UserScore userScore = new UserScore();
+        userScore.setIdToken(firebaseUser.getUid());
+        userScore.setEmailId(firebaseUser.getEmail());
+        userScore.setScore(String.valueOf(userScoreData));
+
+        LocalDate today = LocalDate.now();
+        userScore.setUserDate(String.valueOf(today));
+
+        String tableKey = mDatabaseRef.child("UserScore").push().getKey();
+        mDatabaseRef.child("UserScore").child(tableKey).setValue(userScore);
     }
+
+
     private void setGameStatus(int gameStatus) {
         int prevStatus = mGameStatus.get();
         mGameStatusText.setVisibility(View.VISIBLE);
@@ -135,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if (mGameView.isGameOver()) {
+                saveScoreData();
                 mHandler.post(() -> setGameStatus(STATUS_OVER));
             }
         }).start();
