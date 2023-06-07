@@ -33,8 +33,16 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
-    EditText txtID,txtPW;
+    EditText txtID,txtPW,txtChapchaCheck;
+
+    TextView txtIsHuman,txtChapcha;
     Button btnLogin;
     ImageButton btnCancle;
 
@@ -43,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQ_SIGN_GOOGLE = 100; //구글 로그인 결과 코드
     private FirebaseAuth mFirebaseAuth; // 파이어베이스 인증 변수
     private DatabaseReference mDatabaseRef; // 실시간 DB
+
+    private int loginFailCnt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +67,68 @@ public class LoginActivity extends AppCompatActivity {
         txtPW = findViewById(R.id.txtPasswd);
         btnLogin = findViewById(R.id.btnLogin);
         btnCancle = findViewById(R.id.btnCancle);
+        txtChapcha = findViewById(R.id.txtCaptcha);
+        txtIsHuman = findViewById(R.id.txtIsHuman);
+        txtChapchaCheck = findViewById(R.id.txtCaptchaCheck);
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("snakeGame").child("UserAccount");
 
         btnLogin.setOnClickListener(loginEvent);
+    }
+
+    private void showChapcha(){
+        if(loginFailCnt >2 ){
+            txtChapcha.setVisibility(View.VISIBLE);
+            txtIsHuman.setVisibility(View.VISIBLE);
+            txtChapchaCheck.setVisibility(View.VISIBLE);
+
+            txtChapcha.setText(makeRandomNumber());
+
+            String userChapcha = txtChapchaCheck.getText().toString().toLowerCase().replaceAll(" ","");
+            String Chapcha = txtChapcha.getText().toString().toLowerCase().replaceAll(" ","");
+
+            if(Chapcha.equals(userChapcha)){
+                loginFailCnt = 0;
+                txtChapcha.setVisibility(View.GONE);
+                txtIsHuman.setVisibility(View.GONE);
+                txtChapchaCheck.setVisibility(View.GONE);
+
+            } else {
+                Toast.makeText(getApplicationContext(), "로그인 방지 문자를 제대로 입력해주세요!", Toast.LENGTH_SHORT).show();
+                txtChapcha.setText(makeRandomNumber());
+                txtChapchaCheck.setText("");
+            }
+        }
+    }
+    private String makeRandomNumber(){
+        String[] randomNumber = new String[6];
+        ArrayList<String> num = new ArrayList<>();
+        char[] eng = new char[26];
+
+        String[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+        for(int i=1; i<9; i++){
+            num.add(Integer.toString(i));
+        }
+        for(int i=0; i<26; i++){
+            eng[i] = ((char) (i+97));
+        }
+
+        List<String> alphabetList = Arrays.asList(alphabet);
+        Collections.shuffle(num);
+        Collections.shuffle(alphabetList);
+
+        for(int i=0; i<3; i++){
+            randomNumber[i] = num.get(i);
+            randomNumber[i+3] = alphabetList.get(i);
+        }
+        List<String> listRandomNumber = Arrays.asList(randomNumber);
+        Collections.shuffle(listRandomNumber);
+
+        String strRandomNumber = listRandomNumber.toString().replaceAll("^[0-9]^A-Z","");
+        return strRandomNumber;
     }
 
     View.OnClickListener cancleEvent = new View.OnClickListener() {
@@ -123,6 +190,8 @@ public class LoginActivity extends AppCompatActivity {
                                         }
                                     } else {
                                         Toast.makeText(LoginActivity.this,"비밀번호를 잘못 입력 하였습니다",Toast.LENGTH_SHORT).show();
+                                        loginFailCnt ++;
+                                        showChapcha();
                                     }
                                 }
                             });
@@ -130,6 +199,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     if(!emailCheck){
                         Toast.makeText(LoginActivity.this,"존재하지 않는 이메일 입니다.",Toast.LENGTH_SHORT).show();
+                        loginFailCnt ++;
+                        showChapcha();
                         return;
                     }
                 }

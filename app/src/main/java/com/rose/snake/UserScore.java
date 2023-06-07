@@ -10,6 +10,8 @@ public class UserScore
     private int score;
     private String userDate;
 
+    private String userNickname;
+
 
     public UserScore() { }
     // Firebase에서 Realtime DB 에서 모델 클래스로 가져올 때 빈 생성자 필요
@@ -28,6 +30,14 @@ public class UserScore
 
     public void setUserDate(String userDate) {
         this.userDate = userDate;
+    }
+
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
     }
 
     public String getIdToken() {

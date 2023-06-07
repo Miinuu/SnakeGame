@@ -53,7 +53,52 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPasswd" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCaptcha" />
+
+
+    <TextView
+        android:id="@+id/txtIsHuman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="10dp"
+        android:text="오류 확인 문자"
+        android:fontFamily="@font/jamsil_regular"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/txtCaptcha"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/txtCaptcha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="10dp"
+        android:text="AAAAAA"
+        android:fontFamily="@font/jamsil_bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/txtCaptchaCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/txtCaptchaCheck"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="60dp"
+        android:ems="10"
+        android:fontFamily="@font/jamsil_regular"
+        android:hint="A1B2C3"
+        android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:textColorHint="#9D8E8E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPasswd"
+        android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/btnCancle"
