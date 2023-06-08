@@ -62,11 +62,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        Intent intent = getIntent();
-        String userID = intent.getStringExtra("userID");
-
-
         mGameView = findViewById(R.id.game_view);
         mGameStatusText = findViewById(R.id.game_status);
         mGameBtn = findViewById(R.id.game_control_btn);
@@ -98,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         mGameBtn.setOnClickListener(v -> {
             if (mGameStatus.get() == STATUS_PLAYING) {
                 setGameStatus(STATUS_PAUSED);
@@ -109,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setGameStatus(STATUS_START);
-
-
 
     }
 

@@ -27,7 +27,6 @@ public class RankingActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
-    private int userScoreData;
     private LinearLayout mainFrame;
     private Typeface mainFont;
     private Typeface mainFontBold;
@@ -37,17 +36,19 @@ public class RankingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
-        mainFrame = findViewById(R.id.mainFrame);
-        mainFont = getResources().getFont(R.font.jamsil_regular);
-        mainFontBold = getResources().getFont(R.font.jamsil_bold);
+        initView();
 
         makeRankingView();
     }
 
+    private void initView(){
+        mainFrame = findViewById(R.id.mainFrame);
+        mainFont = getResources().getFont(R.font.jamsil_regular);
+        mainFontBold = getResources().getFont(R.font.jamsil_bold);
+    }
 
     private void makeRankingView(){
         mFirebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
 
         List scoreList = new ArrayList();
         List userList = new ArrayList();

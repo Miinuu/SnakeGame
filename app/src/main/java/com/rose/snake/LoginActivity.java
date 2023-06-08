@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("snakeGame").child("UserAccount");
 
         btnLogin.setOnClickListener(loginEvent);
+        btnCancle.setOnClickListener(cancleEvent);
     }
 
     private void showChapcha(){
@@ -178,8 +179,6 @@ public class LoginActivity extends AppCompatActivity {
                                                 @Override
                                                 public void run() {
                                                     Intent intent = new Intent(LoginActivity.this, GameStartActivity.class);
-                                                    intent.putExtra("userID", strEmail);
-
                                                     startActivity(intent);
                                                     finish(); //현재 엑티비티 파괴
                                                 }

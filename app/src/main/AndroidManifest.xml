@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Snake">
         <activity
+            android:name=".RecordActivity"
+            android:exported="false" />
+        <activity
             android:name=".RankingActivity"
             android:exported="false" />
         <activity

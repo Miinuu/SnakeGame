@@ -30,8 +30,6 @@ public class GameStartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_start);
 
-        getIntentedData();
-
         initView();
 
     }
@@ -45,17 +43,14 @@ public class GameStartActivity extends AppCompatActivity {
         btnStartGame.setOnClickListener(startGameEvent);
         btnLogout.setOnClickListener(logoutEvent);
         btnRanking.setOnClickListener(rankingEvent);
+        btnRecord.setOnClickListener(recordEvent);
     }
 
-    private void getIntentedData(){
-        userID = getIntent().getStringExtra("userID");
-    }
 
     View.OnClickListener startGameEvent = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(GameStartActivity.this,MainActivity.class);
-            intent.putExtra("userID",userID);
             startActivity(intent);
         }
     };
@@ -73,6 +68,14 @@ public class GameStartActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(GameStartActivity.this,RankingActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    View.OnClickListener recordEvent = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(GameStartActivity.this,RecordActivity.class);
             startActivity(intent);
         }
     };

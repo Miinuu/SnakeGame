@@ -95,27 +95,22 @@ public class GameView extends View {
 
     public void next() {
         Point first = mSnake.getFirst();
-        Log.d(TAG, "first: " + first.x + " " + first.y);
         Point next = getNext(first);
-        Log.d(TAG, "next: " + next.x + " " + next.y);
 
         switch (next.type) {
             case EMPTY:
-                Log.d(TAG, "next: empty");
                 next.type = PointType.SNAKE;
                 mSnake.addFirst(next);
                 mSnake.getLast().type = PointType.EMPTY;
                 mSnake.removeLast();
                 break;
             case APPLE:
-                Log.d(TAG, "next: apple");
                 next.type = PointType.SNAKE;
                 mSnake.addFirst(next);
                 randomApple();
                 updateScore();
                 break;
             case SNAKE:
-                Log.d(TAG, "next: snake");
                 mGameOver = true;
                 break;
         }
