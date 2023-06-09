@@ -114,9 +114,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makePopup(){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.popup_saving_data, null);
@@ -147,8 +144,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-            }
-        });
 
 
     }

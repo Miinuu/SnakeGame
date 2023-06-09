@@ -80,27 +80,30 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showChapcha(){
-        if(loginFailCnt >2 ){
+
+        String userChapcha = txtChapchaCheck.getText().toString().toLowerCase().replaceAll(" ","");
+        String Chapcha = txtChapcha.getText().toString().toLowerCase().replaceAll(",","").replaceAll(" ","").replace("[","").replace("[","");
+
+
+        if(loginFailCnt == 3 ) {
             txtChapcha.setVisibility(View.VISIBLE);
             txtIsHuman.setVisibility(View.VISIBLE);
             txtChapchaCheck.setVisibility(View.VISIBLE);
 
             txtChapcha.setText(makeRandomNumber());
+        }
 
-            String userChapcha = txtChapchaCheck.getText().toString().toLowerCase().replaceAll(" ","");
-            String Chapcha = txtChapcha.getText().toString().toLowerCase().replaceAll(" ","");
-
-            if(Chapcha.equals(userChapcha)){
+        if(loginFailCnt > 3) {
+            if (Chapcha.equals(userChapcha)) {
                 loginFailCnt = 0;
                 txtChapcha.setVisibility(View.GONE);
                 txtIsHuman.setVisibility(View.GONE);
                 txtChapchaCheck.setVisibility(View.GONE);
-
-            } else {
+                } else {
                 Toast.makeText(getApplicationContext(), "로그인 방지 문자를 제대로 입력해주세요!", Toast.LENGTH_SHORT).show();
                 txtChapcha.setText(makeRandomNumber());
                 txtChapchaCheck.setText("");
-            }
+                }
         }
     }
     private String makeRandomNumber(){
