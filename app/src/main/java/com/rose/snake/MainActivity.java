@@ -113,41 +113,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void makePopup(){
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.popup_saving_data, null);
-                builder.setView(dialogView);
-
-                Button btnSavingYes = dialogView.findViewById(R.id.btnSavingOK);
-                Button btnSavingNo = dialogView.findViewById(R.id.btnSavingNO);
-
-                AlertDialog alertDialog = builder.create();
-                btnSavingNo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
-
-                btnSavingYes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        EditText edtUserNickname = dialogView.findViewById(R.id.edtUserNickname);
-                        userNickname = edtUserNickname.getText().toString().trim();
-
-                        if(!userNickname.isEmpty()) {
-                            saveScoreData();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "닉네임을 입력하세요!", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    }
-                });
-
-
-    }
-
     private void saveScoreData(){
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -159,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         userScore.setIdToken(firebaseUser.getUid());
         userScore.setEmailId(firebaseUser.getEmail());
         userScore.setScore(Integer.parseInt(String.valueOf(userScoreData)));
-        userScore.setUserNickname(userNickname);
 
         LocalDate today = LocalDate.now();
         userScore.setUserDate(String.valueOf(today));
@@ -212,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if (mGameView.isGameOver()) {
-                makePopup();
+                saveScoreData();
                 mHandler.post(() -> setGameStatus(STATUS_OVER));
             }
         }).start();

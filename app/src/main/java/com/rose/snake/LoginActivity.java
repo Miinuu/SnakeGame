@@ -79,10 +79,27 @@ public class LoginActivity extends AppCompatActivity {
         btnCancle.setOnClickListener(cancleEvent);
     }
 
-    private void showChapcha(){
+    private boolean checkChapcha(String userChapcha, String Chapcha){
+        if (Chapcha.equals(userChapcha)) {
+            loginFailCnt = 0;
+            txtChapcha.setVisibility(View.GONE);
+            txtIsHuman.setVisibility(View.GONE);
+            txtChapchaCheck.setVisibility(View.GONE);
+            txtChapchaCheck.setText("");
+            return true;
+        } else {
+            Toast.makeText(getApplicationContext(), "로그인 방지 문자를 제대로 입력해주세요!", Toast.LENGTH_SHORT).show();
+            txtChapcha.setText(makeRandomNumber());
+            txtChapchaCheck.setText("");
+            return false;
+        }
+    }
+
+
+    private boolean showChapcha(){
 
         String userChapcha = txtChapchaCheck.getText().toString().toLowerCase().replaceAll(" ","");
-        String Chapcha = txtChapcha.getText().toString().toLowerCase().replaceAll(",","").replaceAll(" ","").replace("[","").replace("[","");
+        String chapcha = txtChapcha.getText().toString().toLowerCase().replaceAll(",","").replaceAll(" ","").replace("[","").replace("]","");
 
 
         if(loginFailCnt == 3 ) {
@@ -91,21 +108,19 @@ public class LoginActivity extends AppCompatActivity {
             txtChapchaCheck.setVisibility(View.VISIBLE);
 
             txtChapcha.setText(makeRandomNumber());
+
+            return false;
+
         }
 
         if(loginFailCnt > 3) {
-            if (Chapcha.equals(userChapcha)) {
-                loginFailCnt = 0;
-                txtChapcha.setVisibility(View.GONE);
-                txtIsHuman.setVisibility(View.GONE);
-                txtChapchaCheck.setVisibility(View.GONE);
-                } else {
-                Toast.makeText(getApplicationContext(), "로그인 방지 문자를 제대로 입력해주세요!", Toast.LENGTH_SHORT).show();
-                txtChapcha.setText(makeRandomNumber());
-                txtChapchaCheck.setText("");
-                }
+            return checkChapcha(userChapcha,chapcha);
         }
+
+        return true;
     }
+
+
     private String makeRandomNumber(){
         String[] randomNumber = new String[6];
         ArrayList<String> num = new ArrayList<>();
@@ -181,9 +196,14 @@ public class LoginActivity extends AppCompatActivity {
                                             new Handler().postDelayed(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    Intent intent = new Intent(LoginActivity.this, GameStartActivity.class);
-                                                    startActivity(intent);
-                                                    finish(); //현재 엑티비티 파괴
+                                                    if(showChapcha() == true) {
+                                                        Intent intent = new Intent(LoginActivity.this, GameStartActivity.class);
+                                                        startActivity(intent);
+                                                        finish(); //현재 엑티비티 파괴
+                                                    }
+                                                    else {
+                                                        return;
+                                                    }
                                                 }
                                             },3000);
                                         }else {

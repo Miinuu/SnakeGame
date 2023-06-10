@@ -10,7 +10,6 @@ public class UserAccount
     private String name;
     private String phone;
 
-
     public UserAccount() { }
     // Firebase에서 Realtime DB 에서 모델 클래스로 가져올 때 빈 생성자 필요
 
@@ -30,7 +29,6 @@ public class UserAccount
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
 
     public String getIdToken() {
         return idToken;
